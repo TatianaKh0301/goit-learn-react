@@ -1,22 +1,17 @@
-import { BsAlarm } from "react-icons/bs";
-import {HiOutlineChartPie, HiOutlineChartBar} from "react-icons/hi";
-export const Recipe = ({recipe: {name, time, servings, calories}}) => {
+import { RecipeInfo } from 'components/RecipeInfo/RecipeInfo';
+import {RecipeDifficulty} from 'components/RecipeDifficulty/RecipeDifficulty';
+import {Wrapper, Title} from 'components/Recipe/Recipe.styled';
+export const Recipe = ({recipe: {name, time, servings, calories, difficulty}}) => {
    
     return (
-        <div>
-            <h2>{name}</h2>
-            <div>
-                <BsAlarm />
-                <p>{time} mins</p>
-            </div>
-            <div>
-                <HiOutlineChartPie />
-                <p>{servings} servings</p>
-            </div>
-            <div>
-                <HiOutlineChartBar />
-                <p>{calories} calories</p>
-            </div>
-        </div>
+        <Wrapper>
+            <Title>{name}</Title>
+            <RecipeInfo 
+                time={time}
+                servings={servings}
+                calories={calories}
+            />
+            <RecipeDifficulty difficulty={difficulty}/>
+        </Wrapper>
     );
 };
