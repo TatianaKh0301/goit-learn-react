@@ -10,7 +10,12 @@
 // import recipes from "recipes.json";
 // import {RecipeList} from "components/RecipeList/RecipeList";
 
-import {Counter} from 'components/Counter/Counter'
+
+// -----------------COUNTER----------------------------
+// import {Counter} from 'components/Counter/Counter'
+
+
+import { Dropdown } from "./Dropdown/Dropdown";
 
 export const App = () => {
   return (
@@ -25,7 +30,12 @@ export const App = () => {
       {/* ----------------RECIPES------------------------- */}
       {/* <RecipeList  recipes={recipes}/> */}
 
-      <Counter initialValue={10}/>
+
+      {/* ---------------------COUNTER----------------------- */}
+      {/* <Counter initialValue={10}/> */}
+
+      <Dropdown/>
+
     </div>
   );
 };
