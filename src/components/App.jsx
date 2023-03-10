@@ -4,8 +4,13 @@
 // import { EventBoard } from "components/EventBoard/EventBoard";
 // import upcomingEvents from "upcoming-events.json"
 
-import recipes from "recipes.json";
-import {RecipeList} from "components/RecipeList/RecipeList";
+
+
+// ----------------RECIPES-------------------------
+// import recipes from "recipes.json";
+// import {RecipeList} from "components/RecipeList/RecipeList";
+
+import {Counter} from 'components/Counter/Counter'
 
 export const App = () => {
   return (
@@ -14,7 +19,13 @@ export const App = () => {
 
       {/* <PageTitle text="24th Core Worlds Coalition Conference" />
       <EventBoard events={upcomingEvents}/> */}
-      <RecipeList  recipes={recipes}/>
+
+
+
+      {/* ----------------RECIPES------------------------- */}
+      {/* <RecipeList  recipes={recipes}/> */}
+
+      <Counter initialValue={10}/>
     </div>
   );
 };
