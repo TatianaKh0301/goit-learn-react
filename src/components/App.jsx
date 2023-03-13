@@ -15,7 +15,10 @@
 // import {Counter} from 'components/Counter/Counter'
 
 
-import { Dropdown } from "./Dropdown/Dropdown";
+// import { Dropdown } from "./Dropdown/Dropdown";
+
+import { ColorPicker } from './ColorPicker/ColorPicker';
+import colorOptions from 'coloroptions.json';
 
 export const App = () => {
   return (
@@ -34,8 +37,10 @@ export const App = () => {
       {/* ---------------------COUNTER----------------------- */}
       {/* <Counter initialValue={10}/> */}
 
-      <Dropdown/>
 
+      {/* DROPDOWN */}
+      {/* <Dropdown/> */}
+      <ColorPicker options = {colorOptions}/>
     </div>
   );
 };

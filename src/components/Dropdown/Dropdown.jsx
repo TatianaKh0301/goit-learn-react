@@ -22,16 +22,17 @@ export class Dropdown extends Component {
     // }
 
     render() {
+        const { visible } = this.state;
         return(
             <div className="Dropdown">
                 <button type="button" className="Dropdown__toggle" onClick={this.toggle}>
-                    {this.state.visible ? "Hide" : "Show"}
+                    {visible ? "Hide" : "Show"}
                 </button>
 
                 {/* <button type="button" className="Dropdown__toggle" onClick={this.hide}>
                     Hide
                 </button> */}
-                {this.state.visible && (
+                {visible && (
                     <div className="Dropdown__menu">Drop-down menu</div>
                 )}
                 
