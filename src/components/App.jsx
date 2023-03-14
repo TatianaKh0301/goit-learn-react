@@ -23,6 +23,8 @@
 import React, {Component} from "react";
 import { TodoList } from "./TodoList";
 
+import { Form } from "./Form";
+
 // export const App = () => {
 //   return (
 //     <div>
@@ -56,12 +58,18 @@ export class App extends Component {
       {id: 'id-2', text: 'Разобраться с React Router', completed: false},
       {id: 'id-3', text: 'Пережить Redax', completed: false},
     ],
+    name: '',
+    surname: '',
   };
 
   deleteTodo = (todoId) => {
     this.setState(prevState => ({
       todos: prevState.todos.filter(todo => todo.id !== todoId),
     }))
+  }
+
+  formSubmitHandler = data => {
+    console.log(data);
   }
 
   render() {
@@ -77,7 +85,8 @@ export class App extends Component {
           <p>Общее количество: {todos.length} </p>
           <p>Количество выполненных: {completedTodo} </p>
         </div>
-              <TodoList todos={todos} onDeleteTodo={this.deleteTodo}/>
+        <TodoList todos={todos} onDeleteTodo={this.deleteTodo}/> 
+        <Form onSubmit={this.formSubmitHandler}/>
       </>      
     );
   }
