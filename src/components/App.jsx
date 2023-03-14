@@ -17,30 +17,68 @@
 
 // import { Dropdown } from "./Dropdown/Dropdown";
 
-import { ColorPicker } from './ColorPicker/ColorPicker';
-import colorOptions from 'coloroptions.json';
+// import { ColorPicker } from './ColorPicker/ColorPicker';
+// import colorOptions from 'coloroptions.json';
 
-export const App = () => {
-  return (
-    <div>
-      {/*-------------------- 24TH CORE WORLDS COALITION CONFERENCE----------------- */}
+import React, {Component} from "react";
+import { TodoList } from "./TodoList";
 
-      {/* <PageTitle text="24th Core Worlds Coalition Conference" />
-      <EventBoard events={upcomingEvents}/> */}
+// export const App = () => {
+//   return (
+//     <div>
+      // -------------------- 24TH CORE WORLDS COALITION CONFERENCE----------------- 
 
-
-
-      {/* ----------------RECIPES------------------------- */}
-      {/* <RecipeList  recipes={recipes}/> */}
+      // <PageTitle text="24th Core Worlds Coalition Conference" />
+      // <EventBoard events={upcomingEvents}/> 
 
 
-      {/* ---------------------COUNTER----------------------- */}
-      {/* <Counter initialValue={10}/> */}
+
+      // ----------------RECIPES------------------------- 
+      // <RecipeList  recipes={recipes}/> 
 
 
-      {/* DROPDOWN */}
-      {/* <Dropdown/> */}
-      <ColorPicker options = {colorOptions}/>
-    </div>
-  );
-};
+      //  ---------------------COUNTER-----------------------
+      // <Counter initialValue={10}/>
+
+
+      // -------------DROPDOWN ----------------
+      // <Dropdown/>
+
+
+      // <ColorPicker options = {colorOptions}/>
+
+    // </div> 
+
+export class App extends Component {
+  state = {
+    todos: [
+      {id: 'id-1', text: 'Выучить основы React', completed: true},
+      {id: 'id-2', text: 'Разобраться с React Router', completed: false},
+      {id: 'id-3', text: 'Пережить Redax', completed: false},
+    ],
+  };
+
+  deleteTodo = (todoId) => {
+    this.setState(prevState => ({
+      todos: prevState.todos.filter(todo => todo.id !== todoId),
+    }))
+  }
+
+  render() {
+    const { todos } = this.state;
+    const completedTodo = todos.reduce(
+      (acc, todo) => (todo.completed ? acc + 1 : acc),
+      0,
+    );
+
+    return(
+      <>
+        <div>
+          <p>Общее количество: {todos.length} </p>
+          <p>Количество выполненных: {completedTodo} </p>
+        </div>
+              <TodoList todos={todos} onDeleteTodo={this.deleteTodo}/>
+      </>      
+    );
+  }
+}
