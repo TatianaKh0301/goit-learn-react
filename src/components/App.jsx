@@ -112,22 +112,29 @@ export class App extends Component {
     this.setState({filter: event.currentTarget.value});
   };
 
+  getVisibleTodos = () => {
+    const { filter, todos } = this.state;
+    
+    const normalizedFilter = filter.toLowerCase();
+    return todos.filter(todo =>
+      todo.text.toLocaleLowerCase().includes(normalizedFilter),  
+    );
+    
+  };
+
   // formSubmitHandler = data => {
   //   console.log(data);
   // }
 
   render() {
-    const { todos, filter } = this.state;
+    const { filter } = this.state;
+    const visibleTodos = this.getVisibleTodos();
     // const completedTodo = todos.reduce(
     //   (acc, todo) => (todo.completed ? acc + 1 : acc),
     //   0,
     // );
 
-    const normalizedFilter = filter.toLowerCase();
-    const visibleTodos = todos.filter(todo =>
-      todo.text.toLocaleLowerCase().includes(normalizedFilter),  
-    );
-
+    
     return(
       <>
         {/* <div>
