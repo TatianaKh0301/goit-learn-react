@@ -22,9 +22,15 @@
 
 import React, {Component} from "react";
 import shortid from "shortid";
+// import items from "date.json";
 import { TodoList } from "./TodoList";
 import { TodoEditor } from "./TodoEditor";
 import { TodoFilter } from "./TodoFilter";
+import { IconButton } from "./IconButton";
+import {ReactComponent as Icon} from "images/Vector.svg";
+// import { Modal } from "./Modal";
+// import { Clock } from "./Clock";
+// import { Tabs } from "./Tabs";
 
 
 // import { Form } from "./Form";
@@ -63,9 +69,14 @@ export class App extends Component {
       {id: 'id-3', text: 'Пережить Redax', completed: false},
     ],
     filter: '',
+    showModal: false,
     // name: '',
     // surname: '',
   };
+
+  toggleModal = () => {
+    this.setState( ({ showModal }) => ({showModal: !showModal}))
+  }
 
   addTodo = text => {
     console.log(text);
@@ -122,12 +133,27 @@ export class App extends Component {
     
   };
 
+  componentDidMount() {
+    const todos = localStorage.getItem('todos');
+    const parsedTodos = JSON.parse(todos);
+    if (parsedTodos) {
+      this.setState({todos: parsedTodos});
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    }    
+  }
+
   // formSubmitHandler = data => {
   //   console.log(data);
   // }
 
   render() {
     const { filter } = this.state;
+    // const {showModal} = this.state;
     const visibleTodos = this.getVisibleTodos();
     // const completedTodo = todos.reduce(
     //   (acc, todo) => (todo.completed ? acc + 1 : acc),
@@ -141,9 +167,25 @@ export class App extends Component {
           <p>Общее количество: {todos.length} </p>
           <p>Количество выполненных: {completedTodo} </p>
         </div> */}
+        {/* <Tabs items={items}/> */}
+        {/* <Clock /> */}
+        {/* <button type="button" onClick={this.toggleModal}>Open modal</button> */}
+        {/* {showModal && 
+        <Modal onClose={this.toggleModal}>
+          <h1>Hello this is content modal window as children</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis praesentium repellendus accusamus beatae earum dolore, iure ut. Earum dignissimos eum veritatis non ea, reiciendis debitis minus voluptatem, ipsum porro perferendis?
+          </p>
+          <button type="button" onClick={this.toggleModal}>Close</button>
+        </Modal>  
+        } */}
+        <IconButton>
+          <Icon width="40" height="40" />
+        </IconButton>
         <TodoEditor onSubmit={this.addTodo}/>
         <TodoFilter value={filter} onChange={this.changeFilter}/>
-        <TodoList todos={visibleTodos} onDeleteTodo={this.deleteTodo} onToggleCompleted={this.toggleCompleted}/> 
+        <TodoList todos={visibleTodos} onDeleteTodo={this.deleteTodo} onToggleCompleted={this.toggleCompleted}/>
+        
         {/* <Form onSubmit={this.formSubmitHandler}/> */}
       </>      
     );
